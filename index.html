@@ -12,6 +12,20 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kapakana:wght@300..400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Puppies+Play&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body onload="setup()">
     <div class="container">
@@ -47,24 +61,33 @@
         </section>
 
         <section class="screen buttons-screen">
-          <div class="welcome-banner">
-            <h1>Olá </h1>
+          <div class="photo-banner" id="photo-banner">
+            <img src="./public/photo-bg.jpg" alt="" />
           </div>
-          <button class="main hidden" id="confirm-button" onclick="scrollToConfirmation()">
-            Confirmar Presença
-          </button>
-          <button
-            onclick="window.open('https://www.mercadolivre.com.br/presentes/casorio-k-e-j-99ckq', '_blank')"
-          >
-            Lista de Presentes
-            <i class="fa-solid fa-gift"></i>
-          </button>
-          <button
-            onclick="window.open('https://maps.app.goo.gl/RCu2vPNqQ6ynktH48', '_blank')"
-          >
-            Endereço
-            <i class="fa-solid fa-location-dot"></i>
-          </button>
+          <section class="button-section">
+            <div class="welcome-banner">
+              <h1>Olá!</h1>
+            </div>
+            <button
+              class="main hidden"
+              id="confirm-button"
+              onclick="scrollToConfirmation()"
+            >
+              Confirmar Presença
+            </button>
+            <button
+              onclick="window.open('https://www.mercadolivre.com.br/presentes/casorio-k-e-j-99ckq', '_blank')"
+            >
+              Lista de Presentes
+              <i class="fa-solid fa-gift"></i>
+            </button>
+            <button
+              onclick="window.open('https://maps.app.goo.gl/RCu2vPNqQ6ynktH48', '_blank')"
+            >
+              Endereço
+              <i class="fa-solid fa-location-dot"></i>
+            </button>
+          </section>
         </section>
 
         <section class="screen form-screen hidden" id="confirm-section">
@@ -82,7 +105,11 @@
               value=""
               placeholder="Alguma alergia, diabetes, restrição alimentar."
             />
-            <input type="button" onclick="sendConfirmation()" value="Confirmar"></input>
+            <input
+              type="button"
+              onclick="sendConfirmation()"
+              value="Confirmar"
+            />
           </form>
           <div class="success hidden" id="success-msg">
             <h1>Confirmação enviada com sucesso</h1>
