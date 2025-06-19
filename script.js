@@ -32,7 +32,7 @@ const scrollToConfirmation = () => {
 };
 
 const sendConfirmation = () => {
-  const obsField = document.querySelector("input#obs").value;
+  const obsField = document.querySelector("textarea#obs").value;
   const prsField = document.querySelector("#presenca").value;
 
   fetch(

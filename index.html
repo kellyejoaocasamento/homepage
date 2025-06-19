@@ -92,19 +92,20 @@
 
         <section class="screen form-screen hidden" id="confirm-section">
           <form id="confirm-form">
-            <label for="presenca">Estará presente?</label>
+            <!-- <label for="presenca">Estará presente?</label> -->
             <select id="presenca" name="presenca">
+              <option value="">Estará presente?</option>
               <option value="SIM">Sim</option>
               <option value="NAO">Não</option>
             </select>
-            <label for="obs">Observação:</label>
-            <input
-              type="textarea"
+            <!-- <label for="obs">Observação:</label> -->
+            <textarea
               name="obs"
               id="obs"
               value=""
-              placeholder="Alguma alergia, diabetes, restrição alimentar."
-            />
+              placeholder="Observação; Alguma alergia, diabetes, restrição alimentar."
+              rows="8"
+            ></textarea>
             <input
               type="button"
               onclick="sendConfirmation()"
