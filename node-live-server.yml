@@ -1,0 +1,10 @@
+services:
+  # Node live server built from my devtools
+  # repository
+  node-live-server-casamento:
+    image: node-live-server
+    ports:
+      - "8080:8080"
+    working_dir: /home/node/app
+    volumes:
+      - /Users/joaocarvalho/Work/casamento/site/:/home/node/app
