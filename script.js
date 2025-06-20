@@ -6,29 +6,34 @@ function setup() {
 
 const readUrlData = () => {
   this.data = new URLSearchParams(window.location.search).get("data");
-  this.data = JSON.parse(atob(this.data));
+  if (this.data) this.data = JSON.parse(atob(this.data));
 };
 
 const setBanner = () => {
   const banner = document.querySelector(".welcome-banner h1");
-  banner.innerHTML = "Olá, " + decodeURI(this.data.name) + "!";
+  if (this.data) banner.innerHTML = "Olá, " + decodeURI(this.data.name) + "!";
 };
 
 const checkUserConfirmation = () => {
-  fetch(
-    `https://script.google.com/macros/s/AKfycby95a9TKslsMjORM2xGMeTF3uB7rc4kKnT0nckbsNRg7wwh6b30opc8Q8D7gztF1PvbeQ/exec?id=${this.data.id}&token=${this.data.token}`,
-  )
-    .then((result) => result.json())
-    .then((resultJson) => {
-      if (!resultJson.registered) {
-        document.querySelector("#confirm-button").classList.remove("hidden");
-        document.querySelector("#confirm-section").classList.remove("hidden");
-      }
-    });
+  if (this.data)
+    fetch(
+      `https://script.google.com/macros/s/AKfycby95a9TKslsMjORM2xGMeTF3uB7rc4kKnT0nckbsNRg7wwh6b30opc8Q8D7gztF1PvbeQ/exec?id=${this.data.id}&token=${this.data.token}`,
+    )
+      .then((result) => result.json())
+      .then((resultJson) => {
+        if (!resultJson.registered) {
+          document.querySelector("#confirm-button").classList.remove("hidden");
+          document.querySelector("#confirm-section").classList.remove("hidden");
+        }
+      });
 };
 
 const scrollToConfirmation = () => {
   document.querySelector(".form-screen").scrollIntoView();
+};
+
+const scrollToMain = () => {
+  document.querySelector(".buttons-screen").scrollIntoView();
 };
 
 const sendConfirmation = () => {
