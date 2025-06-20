@@ -23,7 +23,7 @@ const readUrlData = () => {
 };
 
 const setBanner = () => {
-  const banner = document.querySelector(".welcome-banner h1");
+  const banner = document.querySelector(".welcome-banner a");
   if (this.data) banner.innerHTML = "Olá, " + decodeURI(this.data.name) + "!";
 };
 

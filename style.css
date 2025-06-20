@@ -222,12 +222,12 @@ button.main {
 }
 
 .welcome-banner {
-  font-family: "Monsieur La Doulaise", cursive;
+  font-family: "Qwitcher Grypen", cursive;
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;
-  font-size: 3rem;
-  color: #575e5b;
+  font-size: 5rem;
+  color: #474d4aed;
   padding-bottom: 35px;
   text-shadow: -1px 0px 4px rgba(0, 0, 0, 0.1);
 }
