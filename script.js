@@ -34,11 +34,20 @@ const checkUserConfirmation = () => {
     )
       .then((result) => result.json())
       .then((resultJson) => {
+        const heartsLoad = document.querySelector(
+          ".button-section .hearts-loading",
+        );
+        heartsLoad.classList.add("hidden");
         if (!resultJson.registered) {
-          document
-            .querySelector("#open-confirm-button")
-            .classList.remove("hidden");
+          const openConfirmBtn = document.querySelector("#open-confirm-button");
+          openConfirmBtn.classList.remove("hidden");
+          openConfirmBtn.classList.add("in");
           document.querySelector("#confirm-section").classList.remove("hidden");
+        } else {
+          const infoBanner = document.querySelector(
+            ".buttons-screen .info-banner",
+          );
+          infoBanner.classList.remove("hidden");
         }
       });
 };
@@ -102,6 +111,8 @@ const finishConfirmSend = () => {
 
     setTimeout(() => {
       document.querySelector("#open-confirm-button").classList.add("hidden");
+      const infoBanner = document.querySelector(".buttons-screen .info-banner");
+      infoBanner.classList.remove("hidden");
       scrollToMain();
     }, 1200);
   }, 300);
