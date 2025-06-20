@@ -227,20 +227,41 @@ button.main {
 
 #confirm-form select,
 #confirm-form textarea,
+#confirm-form button,
 #confirm-form input {
   margin: 10px 0;
   padding: 15px 10px;
   border-radius: 5px;
   color: var(--dark-font-color);
   border: 0.1px solid gray;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-family: sans-serif;
 }
 
+#confirm-form select.error,
+#confirm-form textarea.error {
+  border: 2px solid red;
+}
+
+#confirm-form button,
 #confirm-form input[type="button"] {
   cursor: pointer;
   background-color: var(--primary-color);
   border: none;
   color: var(--light-font-color);
+  width: 100%;
+  text-transform: none;
+}
+
+#confirm-form label.date-label {
+  font-size: 2.5rem;
+  font-family: "Kapakana", cursive;
+  text-align: right;
+  color: var(--dark-font-color);
+}
+
+#success-msg h1 i {
+  color: var(--primary-color);
 }
 
 @media (min-width: 768px) and (orientation: landscape) {
@@ -295,6 +316,61 @@ button.main {
 
   to {
     width: 50%;
+  }
+}
+
+.hearts-loading i:nth-of-type(1) {
+  animation-delay: 0s;
+}
+.hearts-loading i:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+.hearts-loading i:nth-of-type(3) {
+  animation-delay: 0.4s;
+}
+.hearts-loading i {
+  animation: pulse-heart 0.8s infinite ease-in-out;
+}
+
+@keyframes pulse-heart {
+  0%,
+  100% {
+    font-size: 1rem;
+  }
+
+  50% {
+    font-size: 0.8rem;
+  }
+}
+
+.shrink {
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+.shrink.out {
+  animation-name: shrink-out;
+}
+.shrink.in {
+  animation-name: shrink-in;
+}
+
+@keyframes shrink-in {
+  from {
+    scale: 0;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+@keyframes shrink-out {
+  from {
+    scale: 1;
+  }
+
+  to {
+    scale: 0;
   }
 }
 

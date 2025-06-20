@@ -73,7 +73,7 @@
             </div>
             <button
               class="main hidden"
-              id="confirm-button"
+              id="open-confirm-button"
               onclick="scrollToConfirmation()"
             >
               Confirmar Presença
@@ -94,29 +94,39 @@
         </section>
 
         <section class="screen form-screen hidden" id="confirm-section">
-          <form id="confirm-form">
-            <!-- <label for="presenca">Estará presente?</label> -->
+          <form id="confirm-form" class="shrink">
+            <label class="date-label">01.11.25 às 15h</label>
             <select id="presenca" name="presenca">
-              <option value="">Estará presente?</option>
+              <option value="">Estará presente?(*)</option>
               <option value="SIM">Sim</option>
               <option value="NAO">Não</option>
             </select>
-            <!-- <label for="obs">Observação:</label> -->
             <textarea
               name="obs"
               id="obs"
               value=""
-              placeholder="Observação; Alguma alergia, diabetes, restrição alimentar."
+              placeholder="Observação: Indique se você tem alguma alergia, diabetes ou restrição alimentar."
               rows="8"
             ></textarea>
-            <input
+            <button
               type="button"
               onclick="sendConfirmation()"
               value="Confirmar"
-            />
+              id="confirm-button"
+            >
+              <label>Confirmar</label>
+              <section class="hearts-loading hidden">
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-heart"></i>
+              </section>
+            </button>
           </form>
-          <div class="success hidden" id="success-msg">
-            <h1>Confirmação enviada com sucesso</h1>
+          <div class="success shrink hidden" id="success-msg">
+            <h1>
+              Resposta enviada!
+              <i class="fa-solid fa-circle-check"></i>
+            </h1>
           </div>
         </section>
 

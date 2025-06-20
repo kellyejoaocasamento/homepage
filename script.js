@@ -1,3 +1,16 @@
+/**
+ * Se você veio até aqui, é curioso suficiente para saber que este site
+ * foi feito exclusivamente para uso pessoal, por isso o código aqui não é nada bom.
+ * O site foi feito de maneira rápida, e não tem muita utilidade nem nadas muito expansível.
+ * Tudo aqui é bem básico e eu fiz nos minutos livres entre uma pendência e outra.
+ *
+ * Se caso você for eu mesmo, só que no futuro, se lembre que a gente se divertiu fazendo
+ * esse site, foi bom descobrir como usar o AppScript do Google como "backend", foi legal
+ * fazer o design baseado em um convite real, foi bacana fazer tudo sem ter que fazer o setup de um
+ * framework ou alguma coisa super complexa cheia de regras de negócio e bla bla bla.
+ * Projetos como esse são o verdadeiro motivo de termos entrado nessa profissão, nunca se esqueça.
+ */
+
 function setup() {
   readUrlData();
   setBanner();
@@ -22,7 +35,9 @@ const checkUserConfirmation = () => {
       .then((result) => result.json())
       .then((resultJson) => {
         if (!resultJson.registered) {
-          document.querySelector("#confirm-button").classList.remove("hidden");
+          document
+            .querySelector("#open-confirm-button")
+            .classList.remove("hidden");
           document.querySelector("#confirm-section").classList.remove("hidden");
         }
       });
@@ -37,8 +52,15 @@ const scrollToMain = () => {
 };
 
 const sendConfirmation = () => {
-  const obsField = document.querySelector("textarea#obs").value;
-  const prsField = document.querySelector("#presenca").value;
+  const obsField = document.querySelector("textarea#obs");
+  const prsField = document.querySelector("#presenca");
+
+  if (!prsField?.value) {
+    prsField.classList.add("error");
+    return;
+  } else prsField.classList.remove("error");
+
+  toggleConfirmButtonLoading();
 
   fetch(
     "https://script.google.com/macros/s/AKfycby95a9TKslsMjORM2xGMeTF3uB7rc4kKnT0nckbsNRg7wwh6b30opc8Q8D7gztF1PvbeQ/exec",
@@ -47,16 +69,40 @@ const sendConfirmation = () => {
       body: JSON.stringify({
         id: this.data.id,
         token: this.data.token,
-        value: prsField,
-        obs: obsField,
+        value: prsField.value,
+        obs: obsField.value,
       }),
     },
   ).then((result) => {
     result.json().then((readableJson) => {
       if (readableJson.success) {
-        document.querySelector("#confirm-form").classList.add("hidden");
-        document.querySelector("#success-msg").classList.remove("hidden");
+        finishConfirmSend();
       } else window.alert("Erro inesperado. Contate os noivos!");
+
+      toggleConfirmButtonLoading();
     });
   });
+};
+
+const toggleConfirmButtonLoading = (forcestate = undefined) => {
+  const cnfrmBtn = document.querySelector("#confirm-button");
+  cnfrmBtn.querySelector("label").classList.add("hidden");
+  cnfrmBtn.querySelector("section.hearts-loading").classList.remove("hidden");
+};
+
+const finishConfirmSend = () => {
+  const cnfrForm = document.querySelector("#confirm-form");
+  const scsMsg = document.querySelector("#success-msg");
+
+  cnfrForm.classList.toggle("out");
+  setTimeout(() => {
+    cnfrForm.classList.toggle("hidden");
+    scsMsg.classList.toggle("hidden");
+    scsMsg.classList.toggle("in");
+
+    setTimeout(() => {
+      document.querySelector("#open-confirm-button").classList.add("hidden");
+      scrollToMain();
+    }, 1200);
+  }, 300);
 };
