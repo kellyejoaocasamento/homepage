@@ -30,7 +30,7 @@ const setBanner = () => {
 const checkUserConfirmation = () => {
   if (this.data)
     fetch(
-      `https://script.google.com/macros/s/AKfycby95a9TKslsMjORM2xGMeTF3uB7rc4kKnT0nckbsNRg7wwh6b30opc8Q8D7gztF1PvbeQ/exec?id=${this.data.id}&token=${this.data.token}`,
+      `https://script.google.com/macros/s/AKfycbxn-UGTbUH504R9XutxB6A11M4Ul88tSQlR9mYZ_HEHBmmeJ7RPG1Qy0uj3v9Ei0EqMSQ/exec?id=${this.data.id}&token=${this.data.token}`,
     )
       .then((result) => result.json())
       .then((resultJson) => {
@@ -38,16 +38,13 @@ const checkUserConfirmation = () => {
           ".button-section .hearts-loading",
         );
         heartsLoad.classList.add("hidden");
-        if (!resultJson.registered) {
-          const openConfirmBtn = document.querySelector("#open-confirm-button");
-          openConfirmBtn.classList.remove("hidden");
-          openConfirmBtn.classList.add("in");
-          document.querySelector("#confirm-section").classList.remove("hidden");
-        } else {
-          const infoBanner = document.querySelector(
-            ".buttons-screen .info-banner",
-          );
+        if (resultJson.registered === "SIM") {
+          const infoBanner = document.querySelector(".info-banner.confirmed");
           infoBanner.classList.remove("hidden");
+        } else {
+          document
+            .querySelector(".info-banner.denied")
+            .classList.remove("hidden");
         }
       });
 };
@@ -72,7 +69,7 @@ const sendConfirmation = () => {
   toggleConfirmButtonLoading();
 
   fetch(
-    "https://script.google.com/macros/s/AKfycby95a9TKslsMjORM2xGMeTF3uB7rc4kKnT0nckbsNRg7wwh6b30opc8Q8D7gztF1PvbeQ/exec",
+    "https://script.google.com/macros/s/AKfycbxn-UGTbUH504R9XutxB6A11M4Ul88tSQlR9mYZ_HEHBmmeJ7RPG1Qy0uj3v9Ei0EqMSQ/exec",
     {
       method: "POST",
       body: JSON.stringify({
